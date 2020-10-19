@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+
+import Global from "./styles/global";
+
+import { SearchProvider } from "./context/SearchContext";
+import { LoadingContextProvider } from "./context/LoadingContext";
+
+import Header from "./components/Header";
+import Dashboard from "./pages/Dashboard";
+import ApisProvider from "./context/ApisContext";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <LoadingContextProvider>
+        <ApisProvider>
+          <SearchProvider>
+            <Header />
+            <Dashboard />
+          </SearchProvider>
+        </ApisProvider>
+      </LoadingContextProvider>
+      <Global />
+    </>
   );
 }
 
